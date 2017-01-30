@@ -42,7 +42,7 @@ def send_orders():
 	payload['order_list']= order_list
 	payload['access_token']=KEYS.objects.get(key="access_token").value
 	payload['branch']=KEYS.objects.get(key="branch").value
-	url='http://sandwichjunction.codenicely.in/send_data/'
+	url='http://axisjuice.codenicely.in:8888/send_data/'
 	try:
 		result = requests.get(url,data=json.dumps(payload))
 		result_json	= json.loads(result.text)

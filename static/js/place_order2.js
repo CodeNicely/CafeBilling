@@ -23,16 +23,23 @@ request.onreadystatechange = function(response) {
 
 var x=0;
 var count=0;
-var lim=(ListJson.length+13)/4;
+var lim=1;
+for(x=1;x<ListJson.length;x++)
+{
+  lim+=1;
+if(ListJson[x].category!=ListJson[x-1].category){lim+=1;}
+if(ListJson[x].name.length>24){lim+=2;}
+}
+lim=(lim)/6;
 for(x=0;x<ListJson.length&&count<lim;x++)
 {
   //alert(x);
   var divid=document.getElementById('list1');
-  if(x==0){divid.innerHTML+='<center><div style="font-size:24px">'+ListJson[x].category+'</div></center>';count+=1;}
+  if(x==0){divid.innerHTML+='<center><div style="font-size:20px;">'+ListJson[x].category+'</div></center>';count+=1;}
   else{
     
       if(ListJson[x-1].category!=ListJson[x].category)
-      {divid.innerHTML+='<center><div style="font-size:24px">'+ListJson[x].category+'</div></center>';count+=1;}
+      {divid.innerHTML+='<center><div style="font-size:20px">'+ListJson[x].category+'</div></center>';count+=1;}
     }
   count+=1;
 divid.innerHTML+=('<a class="collection-item waves-effect waves-light"><div style="display:none"><input type="hidden" value='+ListJson[x].id+' id="p'+x+'"><input type="hidden" value=0 id="q'+x+'"><span class="closebtn" >&times;</span><span class="new badge"></span></div>'+'<input type="hidden" value="'+ListJson[x].price+'"><div class="price">'+ListJson[x].price+'</div>'+ListJson[x].name+'</a>');}
@@ -44,7 +51,7 @@ for(;x<ListJson.length&&count<lim;x++)
 var divid=document.getElementById('list2');
   
       if(ListJson[x-1].category!=ListJson[x].category)
-      {divid.innerHTML+='<center><div style="font-size:24px">'+ListJson[x].category+'</div></center>';count+=1;}
+      {divid.innerHTML+='<center><div style="font-size:20px">'+ListJson[x].category+'</div></center>';count+=1;}
   
   count+=1;
 divid.innerHTML+=('<a class="collection-item waves-effect waves-light"><div style="display:none"><input type="hidden" value='+ListJson[x].id+' id="p'+x+'"><input type="hidden" value=0 id="q'+x+'"><span class="closebtn" >&times;</span><span class="new badge"></span></div>'+'<input type="hidden" value="'+ListJson[x].price+'"><div class="price">'+ListJson[x].price+'</div>'+ListJson[x].name+'</a>');}
@@ -56,19 +63,46 @@ for(;x<ListJson.length&&count<lim;x++)
 
 
       if(ListJson[x-1].category!=ListJson[x].category)
-      {divid.innerHTML+='<center><div style="font-size:24px">'+ListJson[x].category+'</div></center>';count+=1}
+      {divid.innerHTML+='<center><div style="font-size:20px">'+ListJson[x].category+'</div></center>';count+=1}
   
 count+=1;
 divid.innerHTML+=('<a class="collection-item waves-effect waves-light"><div style="display:none"><input type="hidden" value='+ListJson[x].id+' id="p'+x+'"><input type="hidden" value=0 id="q'+x+'"><span class="closebtn" >&times;</span><span class="new badge"></span></div>'+'<input type="hidden" value="'+ListJson[x].price+'"><div class="price">'+ListJson[x].price+'</div>'+ListJson[x].name+'</a>');}
 
-for(;x<ListJson.length;x++)
+count=0;
+for(;x<ListJson.length&&count<lim;x++)
 {
   var divid=document.getElementById('list4');
   
 
 
       if(ListJson[x-1].category!=ListJson[x].category)
-      {divid.innerHTML+='<center><div style="font-size:24px">'+ListJson[x].category+'</div></center>';}
+      {divid.innerHTML+='<center><div style="font-size:20px">'+ListJson[x].category+'</div></center>';count+=1}
+  
+count+=1;
+divid.innerHTML+=('<a class="collection-item waves-effect waves-light"><div style="display:none"><input type="hidden" value='+ListJson[x].id+' id="p'+x+'"><input type="hidden" value=0 id="q'+x+'"><span class="closebtn" >&times;</span><span class="new badge"></span></div>'+'<input type="hidden" value="'+ListJson[x].price+'"><div class="price">'+ListJson[x].price+'</div>'+ListJson[x].name+'</a>');}
+
+count=0;
+for(;x<ListJson.length&&count<lim;x++)
+{
+  var divid=document.getElementById('list5');
+  
+
+
+      if(ListJson[x-1].category!=ListJson[x].category)
+      {divid.innerHTML+='<center><div style="font-size:20px">'+ListJson[x].category+'</div></center>';count+=1}
+  
+count+=1;
+divid.innerHTML+=('<a class="collection-item waves-effect waves-light"><div style="display:none"><input type="hidden" value='+ListJson[x].id+' id="p'+x+'"><input type="hidden" value=0 id="q'+x+'"><span class="closebtn" >&times;</span><span class="new badge"></span></div>'+'<input type="hidden" value="'+ListJson[x].price+'"><div class="price">'+ListJson[x].price+'</div>'+ListJson[x].name+'</a>');}
+
+
+for(;x<ListJson.length;x++)
+{
+  var divid=document.getElementById('list6');
+  
+
+
+      if(ListJson[x-1].category!=ListJson[x].category)
+      {divid.innerHTML+='<center><div style="font-size:20px">'+ListJson[x].category+'</div></center>';}
   
 
 divid.innerHTML+=('<a class="collection-item waves-effect waves-light"><div style="display:none"><input type="hidden" value='+ListJson[x].id+' id="p'+x+'"><input type="hidden" value=0 id="q'+x+'"><span class="closebtn" >&times;</span><span class="new badge"></span></div>'+'<input type="hidden" value="'+ListJson[x].price+'"><div class="price">'+ListJson[x].price+'</div>'+ListJson[x].name+'</a>');}
