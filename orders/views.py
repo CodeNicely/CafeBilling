@@ -94,7 +94,7 @@ def place_order(request):
 			print"81"
 			order_row=order_data.objects.create(mobile=data["mobile"],branch=branch,name=data["name"])
 			print"83"
-			order_id=branch_id+'SJ'+str(order_row.id)
+			order_id=branch_id+'AJ'+str(order_row.id)
 
 			for x in data['product_list']:
 				try:
