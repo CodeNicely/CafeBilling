@@ -1,0 +1,89 @@
+
+<html>
+
+<title>Sandwich Junction Placed Order</title>
+
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="/static/materialize/css/materialize.min.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="/static/materialize/css/colour.css"  media="screen,projection"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<script src="/static/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/js/place_order.js"></script>
+<link type="text/css" rel="stylesheet" href="/static/css/alert.css"  media="screen,projection"/>
+ 
+<body>
+<!--  -->
+<div class="alert warning" style="display:none">
+  <div id="close_click"><span class="closebtn" >&times;</span></div>
+  <div id="alert_message">Indicates a warning that might need attention.</div>
+</div>
+<script src="/static/js/alert.js">
+</script>
+<datalist id="json-datalist"></datalist>
+
+ <div class="row">
+        <div class="col s12 m2"></div>
+        <div class="col s12 m8">
+          <div class="card white darken-1" background-color="#FFD700">
+            <div class="card-content black-text">
+         <ul class="collection with-header">
+            <center>
+               <li class="collection-header"><h5 id="order_placed">Sandwich Junction - Place New Order</h5></li>
+        
+            </center>
+  
+<div id="page-wrapper">
+  
+<div class="row">
+<table style="font-size:10px" class="centered"><thead><tr>
+<th><input placeholder="Customer Name" type="text" name="name" id="name" >
+</th><th><input placeholder="Customer Mobile" type="number" name="mobile" id="mobile" >
+</th></tr></thead></table>
+</div>
+<table style="font-size:16px" class="centered" id="mytable">
+<tr> 
+<th>Product Name</th>
+<th>Quantity</th>
+<th>Price</th>
+</tr>
+ </table>
+ <table style="font-size:10px" class="centered" width=100% >
+ 
+ <tr><td width=33.33%></td><td width=33.33%><input class="blue-text text-darken-2" align="right" value="Total Bill" disabled></td><td>
+ <input class="blue-text text-darken-2" align="right" type="number" name="total_bill" id="total_bill" value=0 disabled></td></tr>
+
+
+<tr><td width=33.33%></td><td width=33.33%><input class="blue-text text-darken-2" align="right" value="Discount %" disabled></td><td>
+ <input class="blue-text text-darken-2"  align="right" type="number" name="discount" id="discount" value=0 max=10 min=0 required></td></tr>
+ 
+
+ <tr><td width=33.33%></td><td width=33.33%><input class="blue-text text-darken-2" align="right" value="Total Discounted Bill" disabled></td><td>
+ <input class="blue-text text-darken-2" align="right" type="number" name="total_bill_discounted" id="total_bill_discounted" value=0 disabled></td></tr>
+
+
+ </table>
+  
+ <center><a class=" waves-effect waves-light btn" id="place_order" name="place_order">Place Order</a></center>
+</div>
+
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+   <!-- <table id="mytable">
+       <tr><th>no</th><th>type</th><tr>
+       <tr><td>1</td><td><input class ="tags" id = "T1"></td></tr>
+       <tr><td>2</td><td><input class ="tags" id = "T2"></td></tr>
+       <tr><td>3</td><td><input class ="tags" id = "T3"></td></tr>
+       <tr><td>4</td><td><input class ="tags" id = "T4"></td></tr>
+       <tr><td>5</td><td><input class ="tags" id = "T5"></td></tr>
+       <tr><td>6</td><td><input class ="tags" id = "T6"></td></tr>
+
+   </table> -->
+</html>

@@ -1,0 +1,78 @@
+<html><head>
+  <script src="/static/js/jquery.min.js" type="text/javascript"></script>
+
+  <script src="/static/js/place_order2.js"></script>
+ <link rel="stylesheet" href="/static/materialize/css/materialize.min.css">
+  <link rel="stylesheet" href="/static/css/alert.css">
+  <script src="/static/js/materialize.min.js"></script>
+
+
+<title>Testing</title></head>
+
+
+<body style="background-color:#7E6B67;">
+<input type="hidden" id="total" value=0>
+<div class="navbar-fixed">
+    <nav class="nav-extended">
+
+
+      <div class="nav-wrapper">
+          <img src="/static/logo.jpg" width =17%>        
+        <ul class="right hide-on-med-and-down">
+
+          <li>Name:&nbsp;</li><li><input type="text" id="name"></li>
+          <li>&emsp;Number:&nbsp;</li><li><input type="number" id="number"></li>
+          <li>&emsp;Discount:&nbsp;</li><li><input type="number" id="discount" min=0 max=10></li>
+          <li>&emsp;&emsp;&emsp;&emsp;Total : Rs&emsp;</li><li><div id="total_text" style="font-size:20px;text-align:left;">0</div></li>
+          <li>&emsp;&emsp;&emsp;</li>
+          <li> <button class="btn-large waves-effect waves-light" type="submit" id="place_order" name="action">Place Order</button>&emsp;</li>
+        </ul>
+<!--         <ul class="tabs tabs-transparent"> -->
+<!-- <ul class="left hide-on-med-and-down">
+        <li class="tab"><a href="/admin">Admin</a></li>
+        <li class="tab"><a >&emsp;&emsp;&emsp;&emsp;</a></li>
+        <li class="tab"><a >&emsp;</a></li>
+
+      </ul> -->
+      </div>
+      
+    </nav>
+  </div>
+  <br>
+
+  <div class="alert warning" style="display:none">
+  <div id="close_click"><span class="closebtn" >&times;</span></div>
+  <div id="alert_message">Indicates a warning that might need attention.</div>
+</div>
+  <script src="/static/js/alert.js"></script>
+
+
+<div class="row">
+
+
+<div class="col s12 m3">
+
+  <div class="card collection with-header" id="list1"  style="background-color:yellow;">
+
+  </div>
+</div>
+<div class="col s12 m3">
+
+  <div class="card collection with-header" id="list2" style="background-color:yellow;">
+  </div>
+</div>
+<div class="col s12 m3">
+
+  <div class="card collection with-header" id="list3" style="background-color:yellow;">
+  </div>
+</div>
+
+<div class="col s12 m3">
+
+  <div class="card collection with-header" id="list4" style="background-color:yellow;">
+  </div>
+</div>
+
+</div>
+</body>
+</html>

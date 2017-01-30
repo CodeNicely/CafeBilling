@@ -1,0 +1,272 @@
+<html>
+
+<title>Sandwich Junction - Order Placed</title>
+
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="/static/materialize/css/materialize.min.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="/static/materialize/css/colour.css"  media="screen,projection"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script type="text/javascript" src="/static/js/jquery-2.1.1.min.js"></script>
+
+<body>
+   	
+
+<script type="text/javascript">  
+	
+$(document).ready(function(){
+
+	var response_data={{result_data|safe}};
+	
+	var order_id=response_data.order_id
+	var mobile=response_data['mobile']
+	var name=response_data['name']
+	var product_list=response_data['product_list']
+	var total_discounted=response_data['total_discounted']
+  var discount=response_data['discount']
+	var total=response_data['total']
+  var branch=response_data['branch']
+
+
+	$("#order_id").append(' - '+order_id);
+	$("#name").append(' - '+name);
+	$("#mobile").append(' - '+mobile);
+
+  $("#order_id_print").append(order_id);
+  $("#name_print").append(name);
+  $("#mobile_print").append(mobile);
+  $("#branch_print").append(branch +' , Raipur (C.G) , 492001<br>Contact : {{contact_bill_1|safe}} , {{contact_bill_2|safe}} <br><br>Invoice ')
+ 
+var currentdate = new Date(); 
+var datetime = " "+ currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+
+  $("#date_bill").append(response_data['created']);//(datetime);
+  $("#date_print").append(datetime);//(datetime);
+
+	        // </tr>
+	for(var i=0;i<product_list.length;i++){
+		var table_row =''
+		table_row+='<tr><td>'+product_list[i].name+'</td>'
+		table_row+='<td>'+product_list[i].quantity+'</td>'
+		table_row+='<td>'+(product_list[i].price).toFixed(2)+'</td>'
+    table_row+='<td>'+(product_list[i].price*product_list[i].quantity).toFixed(2)+'</td></tr>'
+
+	$("#product_list_table").append(table_row);
+  $("#product_list_table_print").append(table_row);
+
+	}
+
+var table_row1=''
+    // table_row1+='<tr><td></td>'
+    table_row1+='<tr><td colspan="3">Total</td>'
+    table_row1+='<b><td>'+(total).toFixed(2)+'</td></b></tr>'
+  $("#product_list_table").append(table_row1);
+  $("#total_table_print").append(table_row1);
+  
+  if(discount!=0){
+  var table_row1=''
+    // table_row1+='<tr><td></td>'
+    table_row1+='<tr><td colspan="3">Discount </td>'
+    table_row1+='<b><td>'+discount +' %</td></b></tr>'
+  $("#product_list_table").append(table_row1);
+  $("#total_table_print").append(table_row1);
+  
+  
+	var table_row1=''
+		// table_row1+='<tr><td></td>'
+		table_row1+='<tr><td colspan="3">Sub Total </td>'
+		table_row1+='<b><td>'+(total_discounted).toFixed(2)+'</td></b></tr>'
+	$("#product_list_table").append(table_row1);
+  $("#total_table_print").append(table_row1);
+	
+  }
+	////////////////////////////////
+document.getElementById("print").focus();
+/////////////////////////////////
+
+}
+
+
+);
+</script>
+<script>
+function printContent(){
+  var restorepage = document.body.innerHTML;
+  var printcontent = document.getElementById("invoice").innerHTML;
+  document.body.innerHTML = printcontent;
+  window.print();
+  window.print();
+  document.body.innerHTML = restorepage;
+}
+function Redirect() {
+               window.location="/place_order";
+            };
+</script>
+
+      
+  <style>
+#table, #td, #th {    
+    border: 1px solid #ddd;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+#table {
+    border-collapse: collapse;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+#th, #td {
+    padding: 15px;
+    max-width: 45px;
+    word-wrap: break-word;
+}
+</style>
+
+
+     <div class="row" >
+        <div class="col s12 m2"></div>
+        <div class="col s12 m8">
+          <div class="card white darken-1" background-color="#FFD700" >
+            <div class="card-content black-text">
+     		 <ul class="collection with-header">
+        		<center>
+       				 <li class="collection-header"><h5 id="order_placed">Sandwich Junction - Order Placed</h5></li>
+				
+        		</center>
+
+				<table class="highlight">        		
+        		<tbody>
+        		<tr>
+        		<th><h6 id="order_id">Order Id </h6>
+        		</th>
+        		<th><h6 id="name">Name </h6>
+        		</th>
+        		<th><h6 id="mobile">Contact </h6></th>
+        		</tr>
+        		</tbody>
+        		</table>
+
+        		 <table class="striped centered" id="product_list_table" >
+		        <thead>
+        		  <tr>
+              		<th data-field="name">Name</th>
+              		<th data-field="quantity">Quantity</th>
+              		<th data-field="price">Rate</th>
+                  <th data-field="price">Amount</th>
+
+          			</tr>
+        		</thead>
+        		<tbody>
+        			
+
+        		</tbody>
+
+        		</table>
+			
+        	</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <center><a class=" waves-effect waves-light btn" id="print" onclick=printContent() name="place_order">Print Invoice</a>
+<br><br>
+ <a class=" waves-effect waves-light btn" id="redirect" onclick="Redirect()" name="redirect">Place New Order</a></center>
+<div>
+<div id="invoice" hidden>
+
+
+<table width="100%">
+<tbody>
+<tr>
+<td>
+<table style="font-size: 10;" width="100%">
+<tbody>
+<tr><th colspan="4">
+<p style="font-size: 20;">Sandwich Junction</p>
+</th></tr>
+<tr>
+<td id="branch_print" colspan="4" align="center">
+
+</td>
+</tr>
+<tr><td colspan="4"><hr></td></tr>
+<tr><td colspan=4><br></td></tr>
+<tr>
+<td style="text-align: left;" align="center">
+<p>OrderId:</p>
+</td>
+<td id="order_id_print" style="text-align: left;" align="center">
+<p></p>
+</td>
+<td style="text-align: left;" align="center">
+<p>Date:</p>
+</td>
+<td id="date_bill" style="text-align: left;" align="center">
+<p></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" align="center">
+<p>Name:</p>
+</td>
+<td id="name_print" style="text-align: left;" align="center">
+<p></p>
+</td>
+<td style="text-align: left;" align="center">
+<p>Mobile:</p>
+</td>
+<td id="mobile_print" style="text-align: left;" align="center">
+<p></p>
+</td>
+</tr>
+</tbody>
+</table>
+<br />
+<div>
+<style scoped>
+.border_custom tr td,.border_custom tr th{
+   border: 1px solid black;
+}
+
+</style>
+<table id="product_list_table_print" style="font-size: 12; text-align:center;  border-collapse: collapse;border-spacing: 0px 0px;" class="border_custom" width="100%">
+<tbody>
+<tr><th align="center">Product</th><th align="center">Qty</th><th align="center">Rate</th><th align="center">Amount</th></tr>
+<!-- <tr>
+<td style="text-align: left;" align="center">Masala Sandwich</td>
+<td align="center">10</td>
+<td align="center">100.00</td>
+</tr> -->
+</tbody>
+</table>
+<br>
+
+<table id="total_table_print" style="font-size: 12; text-align: right;" width="100%">
+<tbody>
+<!-- <tr>
+<td style="text-align: left;" align="center">Masala Sandwich</td>
+<td align="center">10</td>
+<td align="center">100.00</td>
+</tr> -->
+</tbody>
+</table>
+<div>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p style="text-align: center;font-size:10">{{bottom_message|safe}}</p>
+<p id="date_print" style="text-align: right;font-size:8">
+</div>
+</div>
+
+</body>
+</html>

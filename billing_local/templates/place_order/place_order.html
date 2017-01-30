@@ -1,0 +1,86 @@
+<html>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+
+var availableTags = [
+"Australia",
+"Belgium",
+"Canada",
+"Denmark",
+"Ethiopia",
+"France"
+];
+var tmp_str="";
+var no_of_rows = 6;
+var upto = no_of_rows + 1 ;
+var total_rows = total_rows ;
+
+
+$(document).ready(function(){
+
+$( ".tags" ).autocomplete({
+source: availableTags 
+});
+
+$('.numbersOnly').keyup(function () { 
+this.value = this.value.replace(/[^0-9\.]/g,'');
+});
+ $("#but").click(function(){
+  var no_of_extra = parseInt($("#no_of_extra").val() , 10);
+   total_rows = no_of_rows + no_of_extra;
+   $("#mytable").find("tr:gt("+upto+")").remove();
+
+
+   for ( var i = no_of_rows + 1 ; i <= total_rows ; i ++)
+   {
+       var tag = "<tr> <td>" + i + "</td> <td> <input class = \"tags\" id = \"T"+i+"\"> </td>";
+       $("#mytable").append(tag);
+
+       $( "#T" + i ).autocomplete({
+           source: availableTags 
+       });
+
+
+   }
+ });
+
+});
+$("#mytable").on("autocompleteclose", "input.tags", function(){
+   //alert($(this).val());
+   for(var i = availableTags.length - 1; i >= 0; i--) {
+   if(availableTags[i] == $(this).val()) {
+   availableTags.splice(i, 1);
+   //alert(tmp_str);
+   availableTags.push(tmp_str);
+   tmp_str="";
+   //avialableTags=avialableTags.concat(tmp_str.val());
+   }
+}
+   
+});
+
+
+$("#mytable").on("click", "input.tags", function(){
+   tmp_str=$(this).val();     
+});
+</script>
+
+    <input type="text" id="no_of_extra" class="numbersOnly" >
+
+       <input type="button" id = "but" value="Add" >
+       <br><br><br><br>
+
+   <table id="mytable">
+       <tr><th>no</th><th>type</th><tr>
+       <tr><td>1</td><td><input class ="tags" id = "T1"></td></tr>
+       <tr><td>2</td><td><input class ="tags" id = "T2"></td></tr>
+       <tr><td>3</td><td><input class ="tags" id = "T3"></td></tr>
+       <tr><td>4</td><td><input class ="tags" id = "T4"></td></tr>
+       <tr><td>5</td><td><input class ="tags" id = "T5"></td></tr>
+       <tr><td>6</td><td><input class ="tags" id = "T6"></td></tr>
+
+   </table>
+</html>
